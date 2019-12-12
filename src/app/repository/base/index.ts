@@ -1,9 +1,9 @@
 import IRead = require("./../interfaces/base/Read");
 import IWrite = require("./../interfaces/base/Write");
-import IHeroModel = require("./../../model/interfaces/HeroModel");
+import Hero = require("./../../dataAccess/schemas/HeroSchema");
 
 class RepositoryBase<T> implements IRead<T>, IWrite<T> {
-  private _model: any;
+  public _model: any;
 
   constructor(schemaModel: any) {
     this._model = schemaModel;
@@ -33,8 +33,8 @@ class RepositoryBase<T> implements IRead<T>, IWrite<T> {
 
   
   retrieve(callback: (error: any, result: any) => void) {
-    this._model.findAll().then(jane => {
-      callback(null, jane);       
+    this._model.findAll().then(jane => { console.log("==================",jane)
+            
   })
   .catch(err => {
     console.log("Error", err);

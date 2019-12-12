@@ -1,12 +1,12 @@
 import express = require("express");
-import HeroRoutes = require("./../HeroRoutes");
+import Routes = require("../Routes");
 
 const app = express();
 const apiVersion = "/api/v1";
 
 class BaseRoutes {
   get routes() {
-    app.use(apiVersion, new HeroRoutes().routes);
+    app.use(apiVersion, new Routes().routes);
 
     return app;
   }

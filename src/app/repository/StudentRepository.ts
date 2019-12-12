@@ -1,12 +1,13 @@
 import HeroModel = require("./../model/HeroModel");
-import IHeroModel = require("./../model/interfaces/HeroModel");
+import IStudentModel = require("./../model/interfaces/IStudentModel");
+// import Student = require("./../dataAccess/schemas/Student");
 import Hero = require("./../dataAccess/schemas/HeroSchema");
 import RepositoryBase = require("./base");
 
-class HeroRepository extends RepositoryBase<IHeroModel> {
+class StudentRepository extends RepositoryBase<IStudentModel> {
   // class HeroRepository {
   constructor() {
-    super(Hero.Hero);
+    super(Hero.student);
   }
 
   // create(item: any, callback: (error: any, result: any) => void) {
@@ -21,5 +22,5 @@ class HeroRepository extends RepositoryBase<IHeroModel> {
   // }
 }
 
-Object.seal(HeroRepository);
-export = HeroRepository;
+Object.seal(StudentRepository);
+export = StudentRepository;
