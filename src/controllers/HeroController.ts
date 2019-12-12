@@ -49,17 +49,11 @@ class HeroController implements IBaseController<HeroBusiness> {
   }
   retrieve(req: express.Request, res: express.Response): void {
     try {
-      console.log("Inside HeroController : retrieve", req);
-      const data = {
-        name: "Uday",
-        company: "Rapidera"
-      };
-      res.json(data);
-      // var heroBusiness = new HeroBusiness();
-      // heroBusiness.retrieve((error, result) => {
-      //   if (error) res.send({ error: "error" });
-      //   else res.send(result);
-      // });
+      var heroBusiness = new HeroBusiness();
+      heroBusiness.retrieve((error, result) => {
+        if (error) res.send({ error: "error" });
+        else res.send(result);
+      });
     } catch (e) {
       console.log(e);
       res.send({ error: "error in your request" });

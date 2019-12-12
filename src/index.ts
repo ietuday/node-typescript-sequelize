@@ -9,6 +9,17 @@ const app = express();
 const port = parseInt(process.env.PORT, 10) || 5000;
 app.set("port", port);
 app.use(Middlewares.configuration);
+
+
+
+//to create table 
+db.sync({force: false , alter : true}).then(res => {
+  console.log("Connection has been established successfully.");
+})
+.catch(err => {
+  console.error("Unable to connect to the database:", err);
+});
+
 db.authenticate()
   .then(res => {
     console.log("Connection has been established successfully.");

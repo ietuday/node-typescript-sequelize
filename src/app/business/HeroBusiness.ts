@@ -15,7 +15,7 @@ class HeroBusiness implements IHeroBusiness {
   }
 
   retrieve(callback: (error: any, result: any) => void) {
-    //  this._heroRepository.retrieve(callback);
+     this._heroRepository.retrieve(callback);
   }
 
   update(
@@ -23,19 +23,19 @@ class HeroBusiness implements IHeroBusiness {
     item: IHeroModel,
     callback: (error: any, result: any) => void
   ) {
-    // this._heroRepository.findById(_id, (err, res) => {
-    //     if(err) callback(err, res);
-    //     else
-    //         this._heroRepository.update(res._id, item, callback);
-    // });
+    this._heroRepository.findById(_id, (err, res) => {
+        if(err) callback(err, res);
+        else
+            this._heroRepository.update(_id, item, callback);
+    });
   }
 
   delete(_id: string, callback: (error: any, result: any) => void) {
-    // this._heroRepository.delete(_id , callback);
+    this._heroRepository.delete(_id , callback);
   }
 
   findById(_id: string, callback: (error: any, result: IHeroModel) => void) {
-    // this._heroRepository.findById(_id, callback);
+     this._heroRepository.findById(_id, callback);
   }
 }
 

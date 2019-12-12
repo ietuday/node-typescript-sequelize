@@ -10,58 +10,67 @@ class RepositoryBase<T> implements IRead<T>, IWrite<T> {
   }
 
   create(item: T, callback: (error: any, result: any) => void) {
-    this._model
-      .sync({ force: true })
-      .then(res => {
-        this._model.create(item).then(jane => {
-          callback(null, jane);
-        });
+        this._model.create(item).then(result => {
+          callback(null, result);
+       
       })
       .catch(err => {
         console.log("Error", err);
       });
   }
 
+  
+//  getAll(callback: (error: any, result: any) => void) {    
+//         this._model.findAll().then(jane => {
+//           callback(null, jane);       
+//       })
+//       .catch(err => {
+//         console.log("Error", err);
+//       });
+           
+//     //  this._model.find({}, callback)
+//   }
+
+  
   retrieve(callback: (error: any, result: any) => void) {
-    this._model
-      .sync({ force: true })
-      .then(res => {
-        this._model.find({}, callback);
-      })
-      .catch(err => {
-        console.log("Error", err);
-      });
+    this._model.findAll().then(jane => {
+      callback(null, jane);       
+  })
+  .catch(err => {
+    console.log("Error", err);
+  });
     //  this._model.find({}, callback)
   }
 
   update(_id: string, item: T, callback: (error: any, result: any) => void) {
-    this._model
-      .sync({ force: true })
-      .then(res => {
-        this._model.update({ id: _id }, item, callback);
+   
+        this._model.update( item, {  where: { id: _id }}).then(result => {
+          callback(null, result);       
       })
+    
       .catch(err => {
         console.log("Error", err);
       });
   }
 
   delete(_id: string, callback: (error: any, result: any) => void) {
-    this._model
-      .sync({ force: true })
-      .then(res => {
-        this._model.remove({ id: _id }, err => callback(err, null));
+    
+        this._model.destroy({where: { id: _id }}).then(result => {
+          callback(null, result);       
       })
+     
       .catch(err => {
         console.log("Error", err);
       });
   }
 
-  findById(_id: string, callback: (error: any, result: T) => void) {
-    this._model
-      .sync({ force: true })
-      .then(res => {
-        this._model.findById(_id, callback);
-      })
+  findById(_id: string, callback: (error: any, result: T) => void) {       
+        this._model.findOne( {where: {
+          id: _id
+       }
+      }).then(result => {
+        callback(null, result);       
+    })     
       .catch(err => {
         console.log("Error", err);
       });
